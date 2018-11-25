@@ -1,4 +1,6 @@
 global loader
+; define access to the C file
+extern main
 
 MAGIC_NUMBER equ 0x1BADB002     ; DEFINE THE MAGIC NUMBER CONSTANT
 FLAGS        equ 0x0            ; multiboot flags
@@ -22,5 +24,6 @@ loader:
                                                 ; stack (end of memory area)
     mov eax, 0xCAFEBABE         ; the loader label (entry point for linker script)
 
+call main                       ; call the C file
 .loop:
   jmp .loop                     ; loop 5evr
